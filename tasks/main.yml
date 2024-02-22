@@ -1,0 +1,10 @@
+---
+- name: Install psutil
+  ansible.builtin.package:
+    name: python3-psutil
+- name: System load
+  sysload:
+  register: load
+- name: Show system load
+  ansible.builtin.debug:
+    msg: "{{ load }}"
