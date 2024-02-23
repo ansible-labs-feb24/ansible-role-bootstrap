@@ -2,6 +2,9 @@
 - name: Install psutil
   ansible.builtin.package:
     name: python3-psutil
+- name: Install cryptography
+  ansible.builtin.package:
+    name: python3-cryptography
 - name: System load
   sysload:
   register: load
