@@ -20,3 +20,14 @@
     - name: Assert that python3-psutil package is installed
       ansible.builtin.assert:
         that: not psutil_status.changed
+
+    - name: Check python3-cryptography package status
+      ansible.builtin.package:
+        name: python3-cryptography
+        state: installed
+      check_mode: true
+      register: cryptography_status
+
+    - name: Assert that python3-cryptography package is installed
+      ansible.builtin.assert:
+        that: not cryptography_status.changed
