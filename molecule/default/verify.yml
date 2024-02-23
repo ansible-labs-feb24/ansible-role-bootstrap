@@ -5,6 +5,18 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Example assertion
+
+    - name: Check python3-psutil package status
+      ansible.builtin.package:
+        name: python3-psutil
+        state: installed
+      check_mode: true
+      register: psutil_status
+
+    - name: Show python3-psutil package status
+      ansible.builtin.debug:
+        msg: "{{ psutil_status }}"
+
+    - name: Assert that python3-psutil package is installed
       ansible.builtin.assert:
-        that: true
+        that: not psutil_status.changed
